@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = CatFactViewModel()
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
+            .onAppear {
+                viewModel.loadCatFact()
+            }
     }
 }
 
