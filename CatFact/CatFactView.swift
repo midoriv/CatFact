@@ -11,11 +11,19 @@ struct CatFactView: View {
     @StateObject private var viewModel = CatFactViewModel()
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-            .onAppear {
-                viewModel.loadCatFact()
+        Group {
+            switch viewModel.loadState {
+            case .idle, .loading:
+                ProgressView("Loading...")
+            case let .loaded(catFact):
+                Text(catFact.fact)
+            case .failed:
+                Text("Failed")
             }
+        }
+        .onAppear {
+            viewModel.loadCatFact()
+        }
     }
 }
 
