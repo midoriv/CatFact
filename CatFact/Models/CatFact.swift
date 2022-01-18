@@ -7,6 +7,9 @@
 
 import Foundation
 
-struct CatFact: Codable {
+struct CatFact: Identifiable, Codable {
     var fact: String
+    var id: String {
+        return fact
+    }
 }

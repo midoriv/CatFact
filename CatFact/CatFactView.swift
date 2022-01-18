@@ -15,14 +15,16 @@ struct CatFactView: View {
             switch viewModel.loadState {
             case .idle, .loading:
                 ProgressView("Loading...")
-            case let .loaded(catFact):
-                Text(catFact.fact)
+            case let .loaded(catFacts):
+                List(catFacts) { catFact in
+                    Text(catFact.fact)
+                }
             case .failed:
                 Text("Failed")
             }
         }
-        .onAppear {
-            viewModel.loadCatFact()
+        .task {
+            await viewModel.loadCatFacts()
         }
     }
 }

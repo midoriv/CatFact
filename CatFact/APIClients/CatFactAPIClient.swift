@@ -9,24 +9,18 @@ import Foundation
 import Combine
 
 struct CatFactAPIClient {
-    func getCatFact() -> AnyPublisher<CatFact, Error> {
+    func loadCatFacts() async throws -> [CatFact] {
         let url = URL(string: "https://catfact.ninja/fact")!
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        urlRequest.allHTTPHeaderFields = [
-            "Accept": "application/json"
-        ]
         
-        return URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .tryMap() { response -> Data in
-                guard let httpURLResponse = response.response as? HTTPURLResponse,
-                      httpURLResponse.statusCode == 200
-                else {
-                    throw URLError(.badServerResponse)
+        return try await withThrowingTaskGroup(of: [CatFact].self) { group -> [CatFact] in
+            for _ in 0...9 {
+                group.addTask {
+                    let (data, _) = try await URLSession.shared.data(from: url)
+                    let catFact = try JSONDecoder().decode(CatFact.self, from: data)
+                    return [catFact]
                 }
-                return response.data
             }
-            .decode(type: CatFact.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
+            return try await group.reduce(into: [CatFact]()) { $0 += $1 }
+        }
     }
 }
