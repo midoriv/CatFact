@@ -9,7 +9,11 @@ import Foundation
 
 struct CatFact: Identifiable, Codable {
     var fact: String
-    var id: String {
-        return fact
+    var id: String
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = UUID().uuidString
+        self.fact = try container.decode(String.self, forKey: .fact)
     }
 }
