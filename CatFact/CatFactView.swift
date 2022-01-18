@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CatFactView: View {
     @StateObject private var viewModel = CatFactViewModel()
+    @State var currentIndex = 0
     
     var body: some View {
         Group {
@@ -16,13 +17,13 @@ struct CatFactView: View {
             case .idle, .loading:
                 loadingView
             case let .loaded(catFacts):
-                List(catFacts) { catFact in
-                    Text(catFact.fact)
-                }
+                catFactView(catFacts: catFacts)
+                
             case .failed:
                 Text("Failed")
             }
         }
+        .padding()
         .task {
             await viewModel.loadCatFacts()
         }
@@ -37,6 +38,28 @@ struct CatFactView: View {
                 ProgressView("Loading...")
             }
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+        }
+    }
+    
+    func catFactView(catFacts: [CatFact]) -> some View {
+        VStack(spacing: 20) {
+            Text(catFacts[currentIndex].fact)
+            
+            HStack {
+                Button(action: {
+                    currentIndex -= 1
+                }) {
+                    Image(systemName: "arrow.left")
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    currentIndex += 1
+                }) {
+                    Image(systemName: "arrow.right")
+                }
+            }
         }
     }
 }
