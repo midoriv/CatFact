@@ -16,8 +16,8 @@ struct CatFactView: View {
             switch viewModel.loadState {
             case .idle, .loading:
                 loadingView
-            case let .loaded(catFacts):
-                catFactView(catFacts: catFacts)
+            case .loaded:
+                catFactView
                 
             case .failed:
                 Text("Failed")
@@ -41,21 +41,18 @@ struct CatFactView: View {
         }
     }
     
-    func catFactView(catFacts: [CatFact]) -> some View {
+    var catFactView: some View {
         VStack(spacing: 20) {
-            Text(catFacts[currentIndex].fact)
-            
+            Text(viewModel.catFacts[currentIndex].fact)
             HStack {
                 Button(action: {
-                    currentIndex -= 1
+                    currentIndex = (currentIndex == 0) ? viewModel.catFacts.count - 1 : currentIndex - 1
                 }) {
                     Image(systemName: "arrow.left")
                 }
-                
                 Spacer()
-                
                 Button(action: {
-                    currentIndex += 1
+                    currentIndex = (currentIndex + 1) % viewModel.catFacts.count
                 }) {
                     Image(systemName: "arrow.right")
                 }

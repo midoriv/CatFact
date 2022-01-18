@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum LoadState<Value> {
+enum LoadState {
     case idle
     case loading
     case failed(Error)
-    case loaded(Value)
+    case loaded
 }

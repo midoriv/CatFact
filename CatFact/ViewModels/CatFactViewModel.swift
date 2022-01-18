@@ -9,7 +9,9 @@ import Foundation
 import Combine
 
 class CatFactViewModel: ObservableObject {
-    @Published private(set) var loadState: LoadState<[CatFact]> = .idle
+    @Published private(set) var loadState: LoadState = .idle
+    @Published private(set) var catFacts = [CatFact]()
+    
     private var cancellables = Set<AnyCancellable>()
     private let apiClient = CatFactAPIClient()
     
@@ -23,7 +25,8 @@ class CatFactViewModel: ObservableObject {
             let catFacts = try await apiClient.loadCatFacts()
             
             DispatchQueue.main.async { [weak self] in
-                self?.loadState = .loaded(catFacts)
+                self?.loadState = .loaded
+                self?.catFacts = catFacts
                 print("Loaded")
             }
         }
