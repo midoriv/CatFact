@@ -41,7 +41,7 @@ class CatFactViewModel: ObservableObject {
     }
     
     func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] timer in
+        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
             if let weakSelf = self {
                 weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
             }
