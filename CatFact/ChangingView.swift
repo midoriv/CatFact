@@ -17,5 +17,11 @@ struct ChangingView: View {
         .onAppear {
             viewModel.startTimer()
         }
+        .id(viewModel.currentFactIndex)
+        .transition(
+            AnyTransition
+                .asymmetric(insertion: .opacity, removal: .identity)
+                .animation(.easeInOut(duration: 1))
+        )
     }
 }
