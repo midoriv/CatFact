@@ -17,7 +17,7 @@ struct CatFactView: View {
             case .idle, .loading:
                 loadingView
             case .loaded:
-                catFactView
+                ChangingView(currentIndex: currentIndex)
                 
             case .failed:
                 Text("Failed")
