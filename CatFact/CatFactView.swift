@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatFactView: View {
-    @StateObject private var viewModel = CatFactViewModel()
+    @EnvironmentObject private var viewModel: CatFactViewModel
     @State var currentIndex = 0
     
     var body: some View {

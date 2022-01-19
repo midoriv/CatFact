@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CatFactApp: App {
+    let viewModel = CatFactViewModel()
+    
     var body: some Scene {
         WindowGroup {
             CatFactView()
+                .environmentObject(viewModel)
         }
     }
 }
