@@ -17,6 +17,8 @@ class CatFactViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let apiClient = CatFactAPIClient()
     
+    private var timer: Timer?
+    
     // https://sozai-good.com/illust/animal/cat?category_id=174
     private let imageNames = ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10"]
     
@@ -59,7 +61,8 @@ class CatFactViewModel: ObservableObject {
     }
     
     func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
             if let weakSelf = self {
                 weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
             }
