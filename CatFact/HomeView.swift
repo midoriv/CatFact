@@ -18,16 +18,16 @@ struct HomeView: View {
                     .scaledToFill()
                     .opacity(0.9)
                 
-                VStack {
+                VStack(spacing: 30) {
                     // TODO: only samples
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        Text("Option 1")
+                        OptionView(optionName: "Option 1")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        Text("Option 2")
+                        OptionView(optionName: "Option 2")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        Text("Option 3")
+                        OptionView(optionName: "Option 3")
                     }
                 }
             }
@@ -37,8 +37,23 @@ struct HomeView: View {
     }
 }
 
+struct OptionView: View {
+    let optionName: String
+    
+    var body: some View {
+        ZStack {
+            Color.white
+            HStack {
+                Text(optionName)
+            }
+        }
+        .frame(width: 250, height: 60)
+    }
+}
+
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+.previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
