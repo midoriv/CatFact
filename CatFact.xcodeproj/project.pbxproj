@@ -17,6 +17,7 @@
 		075E381927950CBD00D58969 /* LoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E381827950CBD00D58969 /* LoadState.swift */; };
 		0767063C2797C89400C1AC24 /* ChangingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0767063B2797C89400C1AC24 /* ChangingView.swift */; };
 		07CCD0892799181500BDB6E9 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CCD0882799181500BDB6E9 /* UtilityExtensions.swift */; };
+		07CCD08B2799281100BDB6E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CCD08A2799281100BDB6E9 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		075E381827950CBD00D58969 /* LoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadState.swift; sourceTree = "<group>"; };
 		0767063B2797C89400C1AC24 /* ChangingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangingView.swift; sourceTree = "<group>"; };
 		07CCD0882799181500BDB6E9 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
+		07CCD08A2799281100BDB6E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				075E38012794F51F00D58969 /* Assets.xcassets */,
 				075E38032794F51F00D58969 /* Preview Content */,
 				0767063B2797C89400C1AC24 /* ChangingView.swift */,
+				07CCD08A2799281100BDB6E9 /* HomeView.swift */,
 			);
 			path = CatFact;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07CCD08B2799281100BDB6E9 /* HomeView.swift in Sources */,
 				075E381927950CBD00D58969 /* LoadState.swift in Sources */,
 				0767063C2797C89400C1AC24 /* ChangingView.swift in Sources */,
 				075E38002794F51D00D58969 /* CatFactView.swift in Sources */,

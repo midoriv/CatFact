@@ -13,8 +13,8 @@ struct CatFactApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CatFactView()
-                .environmentObject(viewModel)
+            HomeView()
+//                .environmentObject(viewModel)
         }
     }
 }
