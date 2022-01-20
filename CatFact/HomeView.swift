@@ -13,7 +13,7 @@ struct HomeView: View {
             ZStack {
                 Image("homeBackground")
                     .resizable()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .scaledToFill()
                     .opacity(0.9)
                 
                 VStack {
@@ -22,6 +22,7 @@ struct HomeView: View {
                     Text("Option 3")
                 }
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
 }
