@@ -15,6 +15,7 @@ class CatFactViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private let apiClient = CatFactAPIClient()
+    private(set) var imageNames = ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10"]
     
     
     // MARK: - Intent(s)
@@ -46,5 +47,9 @@ class CatFactViewModel: ObservableObject {
                 weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
             }
         }
+    }
+    
+    func getImageName() -> String {
+        imageNames[Int.random(in: 0..<imageNames.count)]
     }
 }

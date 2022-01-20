@@ -14,7 +14,7 @@ struct ChangingView: View {
         GeometryReader { geometry in
             VStack {
                 Group {
-                    Image("cat2")
+                    Image(viewModel.getImageName())
                         .resizable()
                         .scaledToFit()
                 }
