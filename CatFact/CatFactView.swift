@@ -22,7 +22,6 @@ struct CatFactView: View {
                 Text("Failed")
             }
         }
-        .padding()
         .task {
             await viewModel.loadCatFacts()
         }

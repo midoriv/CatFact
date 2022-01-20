@@ -16,6 +16,7 @@
 		075E381627950A7F00D58969 /* CatFactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E381527950A7F00D58969 /* CatFactViewModel.swift */; };
 		075E381927950CBD00D58969 /* LoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E381827950CBD00D58969 /* LoadState.swift */; };
 		0767063C2797C89400C1AC24 /* ChangingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0767063B2797C89400C1AC24 /* ChangingView.swift */; };
+		07CCD0892799181500BDB6E9 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CCD0882799181500BDB6E9 /* UtilityExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		075E381527950A7F00D58969 /* CatFactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactViewModel.swift; sourceTree = "<group>"; };
 		075E381827950CBD00D58969 /* LoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadState.swift; sourceTree = "<group>"; };
 		0767063B2797C89400C1AC24 /* ChangingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangingView.swift; sourceTree = "<group>"; };
+		07CCD0882799181500BDB6E9 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				075E381827950CBD00D58969 /* LoadState.swift */,
+				07CCD0882799181500BDB6E9 /* UtilityExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				075E37FE2794F51D00D58969 /* CatFactApp.swift in Sources */,
 				075E38102794F6D700D58969 /* CatFact.swift in Sources */,
 				075E381627950A7F00D58969 /* CatFactViewModel.swift in Sources */,
+				07CCD0892799181500BDB6E9 /* UtilityExtensions.swift in Sources */,
 				075E380D2794F62900D58969 /* CatFactAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
