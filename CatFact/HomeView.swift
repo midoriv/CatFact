@@ -33,6 +33,7 @@ struct HomeView: View {
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
+        .navigationBarHidden(true)
     }
 }
 

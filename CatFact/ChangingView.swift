@@ -38,5 +38,6 @@ struct ChangingView: View {
                 )
             }
         }
+        .navigationBarTitle(Text(""), displayMode: .inline)
     }
 }
