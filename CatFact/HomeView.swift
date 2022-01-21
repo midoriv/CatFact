@@ -19,8 +19,7 @@ struct HomeView: View {
                     .opacity(0.9)
                 
                 VStack(spacing: 40) {
-                    // TODO: only samples
-                    NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
+                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
                         OptionView(optionName: "Dicover")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
