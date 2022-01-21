@@ -21,13 +21,13 @@ struct HomeView: View {
                 VStack(spacing: 40) {
                     // TODO: only samples
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Option 1")
+                        OptionView(optionName: "Dicover")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Option 2")
+                        OptionView(optionName: "Favourites")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Option 3")
+                        OptionView(optionName: "Slide Show")
                     }
                 }
             }
@@ -59,8 +59,7 @@ struct OptionView: View {
             }
             .padding()
         }
-        .frame(width: 230, height: 60)
-        
+        .frame(width: 250, height: 60)
     }
 }
 
