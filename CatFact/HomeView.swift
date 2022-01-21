@@ -18,7 +18,7 @@ struct HomeView: View {
                     .scaledToFill()
                     .opacity(0.9)
                 
-                VStack(spacing: 30) {
+                VStack(spacing: 40) {
                     // TODO: only samples
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
                         OptionView(optionName: "Option 1")
@@ -39,15 +39,28 @@ struct HomeView: View {
 
 struct OptionView: View {
     let optionName: String
+    let backgroundColor = Color.customColor(red: 255.0, green: 250.0, blue: 240)
+    let textColor = Color.customColor(red: 70.0, green: 130.0, blue: 180.0)
     
     var body: some View {
         ZStack {
-            Color.white
-            HStack {
+            backgroundColor
+                .border(textColor, width: 2)
+            
+            HStack() {
+                Image("flower1")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                Spacer()
                 Text(optionName)
+                    .font(.system(size: 20, weight: .bold, design: .serif))
+                    .foregroundColor(textColor)
+                Spacer()
             }
+            .padding()
         }
-        .frame(width: 250, height: 60)
+        .frame(width: 230, height: 60)
+        
     }
 }
 
