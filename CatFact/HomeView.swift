@@ -39,13 +39,13 @@ struct HomeView: View {
 
 struct OptionView: View {
     let optionName: String
-    let backgroundColor = Color.customColor(red: 255.0, green: 250.0, blue: 240)
-    let textColor = Color.customColor(red: 70.0, green: 130.0, blue: 180.0)
+    let textColor = Color.customColor(red: 255.0, green: 250.0, blue: 240)
+    let backgroundColor = Color.customColor(red: 70.0, green: 130.0, blue: 180.0)
     
     var body: some View {
         ZStack {
-            backgroundColor
-                .border(textColor, width: 2)
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundColor(backgroundColor)
             
             HStack() {
                 Image("flower1")
