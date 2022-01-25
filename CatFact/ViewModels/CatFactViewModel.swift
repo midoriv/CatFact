@@ -66,7 +66,12 @@ class CatFactViewModel: ObservableObject {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
             if let weakSelf = self {
-                weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
+                if weakSelf.catFacts.count > 0 {
+                    weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
+                }
+                else {
+                    timer.invalidate()
+                }
             }
         }
     }
