@@ -41,7 +41,7 @@ struct CatFactListView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
                         ForEach(viewModel.catFacts) { catFact in
                             RowView(catFact: catFact, geometry: geometry)
