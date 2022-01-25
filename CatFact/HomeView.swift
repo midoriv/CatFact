@@ -26,7 +26,7 @@ struct HomeView: View {
                     NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
                         OptionView(optionName: "Favourites")
                     }
-                    NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
+                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
                         OptionView(optionName: "Slide Show")
                     }
                 }

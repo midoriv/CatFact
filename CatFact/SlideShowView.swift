@@ -1,5 +1,5 @@
 //
-//  CatFactView.swift
+//  SlideShowView.swift
 //  CatFact
 //
 //  Created by Midori Verdouw on 17/1/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CatFactView: View {
+struct SlideShowView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
@@ -42,6 +42,6 @@ struct CatFactView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CatFactView()
+        SlideShowView()
     }
 }
