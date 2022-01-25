@@ -15,7 +15,7 @@ struct CatFactListView: View {
             Group {
                 switch viewModel.loadState {
                 case .idle, .loading:
-                    loadingView
+                    LoadingView()
                 case .loaded:
                     catFactList
                 case .failed:
@@ -33,7 +33,6 @@ struct CatFactListView: View {
     
     var catFactList: some View {
         GeometryReader { geometry in
-            
             ZStack {
                 Image("homeBackground")
                     .resizable()
@@ -75,18 +74,6 @@ struct CatFactListView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarTitle(Text("Discover"), displayMode: .inline)
-    }
-    
-    var loadingView: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .center) {
-                Image("cat1")
-                    .resizable()
-                    .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.2)
-                ProgressView("Loading...")
-            }
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-        }
     }
     
     func RowView(catFact: CatFact, geometry: GeometryProxy) -> some View {
