@@ -23,7 +23,7 @@ struct ChangingView: View {
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height * 0.3)
                                         
-                    Text(viewModel.catFacts[viewModel.currentFactIndex].fact)
+                    Text(viewModel.favourites[viewModel.currentFactIndex].fact)
                         .padding()
                 }
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
