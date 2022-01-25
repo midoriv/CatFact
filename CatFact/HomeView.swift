@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    let viewModel = CatFactViewModel()
+    @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,6 +34,9 @@ struct HomeView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarHidden(true)
+        .onAppear {
+            viewModel.clearCatFacts()
+        }
     }
 }
 

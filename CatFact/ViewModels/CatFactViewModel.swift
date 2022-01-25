@@ -82,4 +82,10 @@ class CatFactViewModel: ObservableObject {
     func addFavourite(_ id: String) {
         favourites.append(id)
     }
+    
+    func clearCatFacts() {
+        if !catFacts.isEmpty {
+            catFacts.removeAll()
+        }
+    }
 }
