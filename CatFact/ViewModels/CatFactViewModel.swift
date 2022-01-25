@@ -12,7 +12,7 @@ import SwiftUI
 class CatFactViewModel: ObservableObject {
     @Published private(set) var loadState: LoadState = .idle
     @Published private(set) var catFacts = [CatFact]()
-    @Published private(set) var favourites = [String]() // array of CatFact ids
+    @Published private(set) var favourites = [CatFact]()
     @Published var currentFactIndex = 0
     
     private var cancellables = Set<AnyCancellable>()
@@ -79,8 +79,8 @@ class CatFactViewModel: ObservableObject {
         backgroundColors.randomElement()!.value
     }
     
-    func addFavourite(_ id: String) {
-        favourites.append(id)
+    func addFavourite(_ catFact: CatFact) {
+        favourites.append(catFact)
     }
     
     func clearCatFacts() {

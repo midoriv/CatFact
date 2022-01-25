@@ -11,8 +11,8 @@ struct FavouritesView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
-        List(viewModel.favourites, id: \.self) { fav in
-            Text(fav)
+        List(viewModel.favourites) { catFact in
+            Text(catFact.fact)
         }
     }
 }

@@ -95,7 +95,7 @@ struct CatFactListView: View {
                 .padding(.trailing, 20)
             Spacer()
             Button(action: {
-                viewModel.addFavourite(catFact.id)
+                viewModel.addFavourite(catFact)
             }) {
                 Image(systemName: "heart")
             }
