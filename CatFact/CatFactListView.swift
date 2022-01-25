@@ -34,6 +34,7 @@ struct CatFactListView: View {
                     .resizable()
                     .scaledToFill()
                     .opacity(0.9)
+                    .edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
                     VStack(spacing: 20) {
@@ -52,7 +53,6 @@ struct CatFactListView: View {
                     }
                     .padding(40)
                 }
-                .padding(.top, 40)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }

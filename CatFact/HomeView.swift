@@ -17,6 +17,7 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFill()
                     .opacity(0.9)
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 40) {
                     NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
