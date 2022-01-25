@@ -30,6 +30,7 @@ struct ChangingView: View {
                 }
             }
             .task {
+                viewModel.clearCatFacts()
                 await viewModel.loadCatFacts()
             }
         }
