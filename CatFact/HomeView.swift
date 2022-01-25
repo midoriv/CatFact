@@ -23,6 +23,10 @@ struct HomeView: View {
                     NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
                         OptionView(optionName: "Dicover")
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.clearCatFacts()
+                    })
+                    
                     NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
                         OptionView(optionName: "Favourites")
                     }
@@ -34,9 +38,6 @@ struct HomeView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarHidden(true)
-        .onAppear {
-            viewModel.clearCatFacts()
-        }
     }
 }
 
