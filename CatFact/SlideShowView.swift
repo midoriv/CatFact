@@ -14,14 +14,13 @@ struct SlideShowView: View {
         if viewModel.favourites.isEmpty {
             VStack(spacing: 100) {
                 Text("No Favourite")
-                // TODO: change the destination
-                NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
+                NavigationLink(destination: ChangingView(isRandomMode: true).environmentObject(viewModel)) {
                     Text("View slide show of random cat facts")
                 }
             }
         }
         else {
-            ChangingView()
+            ChangingView(isRandomMode: false).environmentObject(viewModel)
         }
     }
 }

@@ -88,4 +88,9 @@ class CatFactViewModel: ObservableObject {
             catFacts.removeAll()
         }
     }
+    
+    func setFavouritesMode() {
+        clearCatFacts()
+        catFacts = favourites
+    }
 }
