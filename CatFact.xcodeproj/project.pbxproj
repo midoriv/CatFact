@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07007BCA279F7E3000767879 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07007BC9279F7E3000767879 /* FavouritesView.swift */; };
 		073AAA3D279A4F95007CDF5B /* CatFactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073AAA3C279A4F95007CDF5B /* CatFactListView.swift */; };
 		075E37FE2794F51D00D58969 /* CatFactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E37FD2794F51D00D58969 /* CatFactApp.swift */; };
 		075E38002794F51D00D58969 /* CatFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E37FF2794F51D00D58969 /* CatFactView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07007BC9279F7E3000767879 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		073AAA3C279A4F95007CDF5B /* CatFactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactListView.swift; sourceTree = "<group>"; };
 		075E37FA2794F51D00D58969 /* CatFact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatFact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075E37FD2794F51D00D58969 /* CatFactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactApp.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				0767063B2797C89400C1AC24 /* ChangingView.swift */,
 				07CCD08A2799281100BDB6E9 /* HomeView.swift */,
 				073AAA3C279A4F95007CDF5B /* CatFactListView.swift */,
+				07007BC9279F7E3000767879 /* FavouritesView.swift */,
 			);
 			path = CatFact;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				0767063C2797C89400C1AC24 /* ChangingView.swift in Sources */,
 				075E38002794F51D00D58969 /* CatFactView.swift in Sources */,
 				075E37FE2794F51D00D58969 /* CatFactApp.swift in Sources */,
+				07007BCA279F7E3000767879 /* FavouritesView.swift in Sources */,
 				075E38102794F6D700D58969 /* CatFact.swift in Sources */,
 				075E381627950A7F00D58969 /* CatFactViewModel.swift in Sources */,
 				07CCD0892799181500BDB6E9 /* UtilityExtensions.swift in Sources */,

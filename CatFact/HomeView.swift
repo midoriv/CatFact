@@ -22,7 +22,7 @@ struct HomeView: View {
                     NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
                         OptionView(optionName: "Dicover")
                     }
-                    NavigationLink(destination: CatFactView().environmentObject(viewModel)) {
+                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
                         OptionView(optionName: "Favourites")
                     }
                     NavigationLink(destination: CatFactView().environmentObject(viewModel)) {

@@ -38,12 +38,19 @@ struct CatFactListView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         ForEach(viewModel.catFacts) { catFact in
-                            RowView(fact: catFact.fact, geometry: geometry)
+                            RowView(catFact: catFact, geometry: geometry)
                             Image("cat2")
                                 .resizable()
                                 .frame(width: 80, height: 80)
                         }
                     }
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Text("Load more")
+                    }
+                    .padding(40)
                 }
                 .padding(.top, 40)
             }
@@ -63,19 +70,14 @@ struct CatFactListView: View {
             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
         }
     }
-}
-
-struct RowView: View {
-    let fact: String
-    let geometry: GeometryProxy
     
-    var body: some View {
+    func RowView(catFact: CatFact, geometry: GeometryProxy) -> some View {
         HStack {
-            Text(fact)
+            Text(catFact.fact)
                 .padding(.trailing, 20)
             Spacer()
             Button(action: {
-                
+                viewModel.addFavourite(catFact.id)
             }) {
                 Image(systemName: "heart")
             }
