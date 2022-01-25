@@ -11,18 +11,23 @@ struct CatFactListView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
-        Group {
-            switch viewModel.loadState {
-            case .idle, .loading:
-                loadingView
-            case .loaded:
-                catFactList
-            case .failed:
-                Text("Failed")
+        if viewModel.catFacts.isEmpty {
+            Group {
+                switch viewModel.loadState {
+                case .idle, .loading:
+                    loadingView
+                case .loaded:
+                    catFactList
+                case .failed:
+                    Text("Failed")
+                }
+            }
+            .task {
+                await viewModel.loadCatFacts()
             }
         }
-        .task {
-            await viewModel.loadCatFacts()
+        else {
+            catFactList
         }
     }
     
@@ -44,14 +49,27 @@ struct CatFactListView: View {
                                 .resizable()
                                 .frame(width: 80, height: 80)
                         }
-                    }
-                    
-                    Button(action: {
                         
-                    }) {
-                        Text("Load more")
+                        Group {
+                            switch viewModel.loadState {
+                            case .loading:
+                                ProgressView("Loading...")
+                                
+                            case .idle, .loaded:
+                                Button(action: {
+                                    Task {
+                                        await viewModel.loadCatFacts()
+                                    }
+                                }) {
+                                    Text("Load more")
+                                }
+                                .padding(40)
+                                
+                            case .failed:
+                                Text("Failed")
+                            }
+                        }
                     }
-                    .padding(40)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)

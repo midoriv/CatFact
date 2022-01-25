@@ -49,8 +49,9 @@ class CatFactViewModel: ObservableObject {
             
             DispatchQueue.main.async { [weak self] in
                 self?.loadState = .loaded
-                self?.catFacts = catFacts
+                self?.catFacts += catFacts
                 print("Loaded")
+                print("\(self!.catFacts.count)")
             }
         }
         catch {
