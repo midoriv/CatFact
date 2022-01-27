@@ -25,7 +25,7 @@ struct SlideShowView: View {
                 }
             }
             else {
-                VStack {
+                VStack(spacing: 100) {
                     NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
                         Text("View slide show of your favourite cat facts")
                     }
