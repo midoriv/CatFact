@@ -12,28 +12,33 @@ struct SlideShowView: View {
     
     var body: some View {
         Group {
-            // if favourite item exist
-            if !viewModel.favourites.isEmpty {
-                NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                    Text("View slide show of your favourite cat facts")
-                }
-                .simultaneousGesture(TapGesture().onEnded{
-                    viewModel.setMode(true)
-                })
-                
-                NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                    Text("View slide show of random cat facts")
-                }
-                .simultaneousGesture(TapGesture().onEnded{
-                    viewModel.setMode(false)
-                })
-            }
-            else {
+            // if favourite item does not exist
+            if viewModel.favourites.isEmpty {
                 VStack(spacing: 100) {
                     Text("No Favourite")
                     NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
                         Text("View slide show of random cat facts")
                     }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.setSlideShowMode(.random)
+                    })
+                }
+            }
+            else {
+                VStack {
+                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                        Text("View slide show of your favourite cat facts")
+                    }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.setSlideShowMode(.favourite)
+                    })
+                    
+                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                        Text("View slide show of random cat facts")
+                    }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.setSlideShowMode(.random)
+                    })
                 }
             }
         }

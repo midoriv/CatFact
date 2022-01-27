@@ -11,20 +11,19 @@ struct ChangingView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var collection: [CatFact] {
-        if viewModel.mode {
+        switch viewModel.slideShowMode {
+        case .favourite:
             return viewModel.favourites
-        }
-        else {
+        case .random:
             return viewModel.catFacts
         }
     }
 
     var body: some View {
-        // use favourites array for slide show
-        if viewModel.mode {
+        switch viewModel.slideShowMode {
+        case .favourite:
             changingView
-        }
-        else {
+        case .random:
             Group {
                 switch viewModel.loadState {
                 case .idle, .loading:
