@@ -13,8 +13,20 @@ struct SlideShowView: View {
     var body: some View {
         Group {
             // if favourite item exist
-            if viewModel.useFavourites {
-                ChangingView().environmentObject(viewModel)
+            if !viewModel.favourites.isEmpty {
+                NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                    Text("View slide show of your favourite cat facts")
+                }
+                .simultaneousGesture(TapGesture().onEnded{
+                    viewModel.setMode(true)
+                })
+                
+                NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                    Text("View slide show of random cat facts")
+                }
+                .simultaneousGesture(TapGesture().onEnded{
+                    viewModel.setMode(false)
+                })
             }
             else {
                 VStack(spacing: 100) {

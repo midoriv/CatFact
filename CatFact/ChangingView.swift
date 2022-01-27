@@ -11,7 +11,7 @@ struct ChangingView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var collection: [CatFact] {
-        if viewModel.useFavourites {
+        if viewModel.mode {
             return viewModel.favourites
         }
         else {
@@ -21,7 +21,7 @@ struct ChangingView: View {
 
     var body: some View {
         // use favourites array for slide show
-        if viewModel.useFavourites {
+        if viewModel.mode {
             changingView
         }
         else {
