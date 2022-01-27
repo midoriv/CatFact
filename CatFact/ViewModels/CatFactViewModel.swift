@@ -99,4 +99,8 @@ class CatFactViewModel: ObservableObject {
             catFacts.removeAll()
         }
     }
+    
+    func setCurrentFactIndex(_ index: Int) {
+        currentFactIndex = index
+    }
 }

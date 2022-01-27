@@ -11,17 +11,22 @@ struct SlideShowView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
-        // if favourite item exist
-        if viewModel.useFavourites {
-            ChangingView().environmentObject(viewModel)
-        }
-        else {
-            VStack(spacing: 100) {
-                Text("No Favourite")
-                NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                    Text("View slide show of random cat facts")
+        Group {
+            // if favourite item exist
+            if viewModel.useFavourites {
+                ChangingView().environmentObject(viewModel)
+            }
+            else {
+                VStack(spacing: 100) {
+                    Text("No Favourite")
+                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                        Text("View slide show of random cat facts")
+                    }
                 }
             }
+        }
+        .onAppear {
+            viewModel.setCurrentFactIndex(0)
         }
     }
 }
