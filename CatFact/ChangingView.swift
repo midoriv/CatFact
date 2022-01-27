@@ -9,16 +9,22 @@ import SwiftUI
 
 struct ChangingView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
-    var isRandomMode: Bool {
-        willSet {
-            if isRandomMode {
-                viewModel.setFavouritesMode()
-            }
+    
+    var collection: [CatFact] {
+        if viewModel.useFavourites {
+            return viewModel.favourites
+        }
+        else {
+            return viewModel.catFacts
         }
     }
-    
+
     var body: some View {
-        if isRandomMode {
+        // use favourites array for slide show
+        if viewModel.useFavourites {
+            changingView
+        }
+        else {
             Group {
                 switch viewModel.loadState {
                 case .idle, .loading:
@@ -33,9 +39,6 @@ struct ChangingView: View {
                 viewModel.clearCatFacts()
                 await viewModel.loadCatFacts()
             }
-        }
-        else {
-            changingView
         }
     }
     
@@ -53,7 +56,7 @@ struct ChangingView: View {
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height * 0.3)
                     
-                    Text(viewModel.catFacts[viewModel.currentFactIndex].fact).padding()
+                    Text(collection[viewModel.currentFactIndex].fact).padding()
                 }
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                 .onAppear {

@@ -15,6 +15,10 @@ class CatFactViewModel: ObservableObject {
     @Published private(set) var favourites = [CatFact]()
     @Published var currentFactIndex = 0
     
+    var useFavourites: Bool {
+        return !self.favourites.isEmpty
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     private let apiClient = CatFactAPIClient()
     
@@ -66,8 +70,10 @@ class CatFactViewModel: ObservableObject {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] timer in
             if let weakSelf = self {
-                if weakSelf.catFacts.count > 0 {
-                    weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % weakSelf.catFacts.count
+                let collection = weakSelf.useFavourites ? weakSelf.favourites : weakSelf.catFacts
+                
+                if collection.count > 0 {
+                    weakSelf.currentFactIndex = (weakSelf.currentFactIndex + 1) % collection.count
                 }
                 else {
                     timer.invalidate()
@@ -92,10 +98,5 @@ class CatFactViewModel: ObservableObject {
         if !catFacts.isEmpty {
             catFacts.removeAll()
         }
-    }
-    
-    func setFavouritesMode() {
-        clearCatFacts()
-        catFacts = favourites
     }
 }
