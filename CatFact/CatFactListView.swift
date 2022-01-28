@@ -84,7 +84,12 @@ struct CatFactListView: View {
             Button(action: {
                 viewModel.addFavourite(catFact)
             }) {
-                Image(systemName: "heart")
+                if viewModel.favourites.contains { $0.fact == catFact.fact } {
+                    Image(systemName: "heart.fill")
+                }
+                else {
+                    Image(systemName: "heart")
+                }
             }
         }
         .frame(width: geometry.size.width * 0.8)
