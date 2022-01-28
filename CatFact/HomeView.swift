@@ -19,25 +19,48 @@ struct HomeView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 40) {
-                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Dicover")
+                VStack(spacing: 30) {
+                    VStack() {
+                        Image("cat7")
+                            .resizable()
+                            .scaledToFit()
+                            .offset(y: 30)
+                        
+                        Text("Cat Fact")
+                            .font(.system(size: 70, weight: .bold, design: .serif))
+                            .offset(y: -30)
+                            .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
                     }
-                    .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.clearCatFacts()
-                    })
+                    .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
                     
-                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Favourites")
-                    }
-                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Slide Show")
+                    VStack(spacing: 40) {
+                        NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
+                            OptionView(optionName: "Dicover")
+                        }
+                        .simultaneousGesture(TapGesture().onEnded{
+                            viewModel.clearCatFacts()
+                        })
+                        
+                        NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
+                            OptionView(optionName: "Favourites")
+                        }
+                        NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
+                            OptionView(optionName: "Slide Show")
+                        }
                     }
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarHidden(true)
+    }
+    
+    func getContentWidth(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.width
+    }
+    
+    func getContentHeight(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.height * 0.4
     }
 }
 
@@ -70,6 +93,7 @@ struct OptionView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-.previewInterfaceOrientation(.portraitUpsideDown)
+            .previewInterfaceOrientation(.portraitUpsideDown)
+            .environmentObject( CatFactViewModel())
     }
 }
