@@ -28,7 +28,7 @@ struct SlideShowView: View {
                             NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
                                 Text("View slide show of random cat facts")
                             }
-                            .simultaneousGesture(TapGesture().onEnded{
+                            .simultaneousGesture(TapGesture().onEnded {
                                 viewModel.setSlideShowMode(.random)
                             })
                         }
@@ -42,14 +42,14 @@ struct SlideShowView: View {
                     NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
                         Text("View slide show of your favourite cat facts")
                     }
-                    .simultaneousGesture(TapGesture().onEnded{
+                    .simultaneousGesture(TapGesture().onEnded {
                         viewModel.setSlideShowMode(.favourite)
                     })
                     
                     NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
                         Text("View slide show of random cat facts")
                     }
-                    .simultaneousGesture(TapGesture().onEnded{
+                    .simultaneousGesture(TapGesture().onEnded {
                         viewModel.setSlideShowMode(.random)
                     })
                 }
