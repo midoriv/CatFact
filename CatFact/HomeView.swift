@@ -12,20 +12,7 @@ struct HomeView: View {
     @State private var orientation = UIDeviceOrientation.unknown
     
     var body: some View {
-        Group {
-            if orientation.isLandscape {
-                landscapeBody
-            }
-            else {
-                portraitBody
-            }
-        }
-        .onRotate { newOrientation in
-            orientation = newOrientation
-        }
-    }
-    
-    var portraitBody: some View {
+        
         GeometryReader { geometry in
             ZStack {
                 Image("homeBackground")
@@ -34,92 +21,97 @@ struct HomeView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 30) {
-                    VStack() {
-                        Image("cat7")
-                            .resizable()
-                            .scaledToFit()
-                            .offset(y: 30)
-                        
-                        Text("Cat Fact")
-                            .font(.system(size: 70, weight: .bold, design: .serif))
-                            .offset(y: -30)
-                            .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
-                    }
-                    .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
-                    
-                    VStack(spacing: 40) {
-                        NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Dicover")
-                        }
-                        .simultaneousGesture(TapGesture().onEnded{
-                            viewModel.clearCatFacts()
-                        })
-                        
-                        NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Favourites")
-                        }
-                        NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Slide Show")
-                        }
-                    }
+                if orientation.isLandscape {
+                    landscapeBody
+                }
+                else {
+                    portraitBody
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarHidden(true)
+        .onRotate { newOrientation in
+            orientation = newOrientation
+        }
+        
     }
     
-    func getContentWidth(in geometry: GeometryProxy) -> CGFloat {
+    var portraitBody: some View {
+        GeometryReader { geometry in
+            VStack(spacing: 30) {
+                VStack() {
+                    Image("cat7")
+                        .resizable()
+                        .scaledToFit()
+                        .offset(y: 30)
+                    
+                    Text("Cat Fact")
+                        .font(.system(size: 70, weight: .bold, design: .serif))
+                        .offset(y: -30)
+                        .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
+                }
+                .frame(width: getContentWidthForPortrait(in: geometry), height: getContentHeightForPortrait(in: geometry))
+                
+                VStack(spacing: 40) {
+                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Dicover")
+                    }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.clearCatFacts()
+                    })
+                    
+                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Favourites")
+                    }
+                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Slide Show")
+                    }
+                }
+            }
+        }
+    }
+    
+    func getContentWidthForPortrait(in geometry: GeometryProxy) -> CGFloat {
         geometry.size.width
     }
     
-    func getContentHeight(in geometry: GeometryProxy) -> CGFloat {
+    func getContentHeightForPortrait(in geometry: GeometryProxy) -> CGFloat {
         geometry.size.height * 0.4
     }
     
     var landscapeBody: some View {
         GeometryReader { geometry in
-            ZStack {
-                Image("homeBackground")
-                    .resizable()
-                    .scaledToFill()
-                    .opacity(0.9)
-                    .edgesIgnoringSafeArea(.all)
-                
-                HStack(spacing: 30) {
-                    VStack() {
-                        Image("cat7")
-                            .resizable()
-                            .scaledToFit()
-                        
-                        Text("Cat Fact")
-                            .font(.system(size: 70, weight: .bold, design: .serif))
-                            .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
-                    }
-                    .frame(width: getContentWidthForLandscape(in: geometry), height: getContentHeightForLandscape(in: geometry))
+            HStack(spacing: 30) {
+                VStack() {
+                    Image("cat7")
+                        .resizable()
+                        .scaledToFit()
                     
-                    VStack(spacing: 40) {
-                        NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Dicover")
-                        }
-                        .simultaneousGesture(TapGesture().onEnded{
-                            viewModel.clearCatFacts()
-                        })
-                        
-                        NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Favourites")
-                        }
-                        NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
-                            OptionView(optionName: "Slide Show")
-                        }
+                    Text("Cat Fact")
+                        .font(.system(size: 70, weight: .bold, design: .serif))
+                        .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
+                }
+                .frame(width: getContentWidthForLandscape(in: geometry), height: getContentHeightForLandscape(in: geometry))
+                
+                VStack(spacing: 40) {
+                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Dicover")
+                    }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        viewModel.clearCatFacts()
+                    })
+                    
+                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Favourites")
+                    }
+                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
+                        OptionView(optionName: "Slide Show")
                     }
                 }
-
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
-        .navigationBarHidden(true)
     }
     
     func getContentWidthForLandscape(in geometry: GeometryProxy) -> CGFloat {
