@@ -14,15 +14,28 @@ struct SlideShowView: View {
         Group {
             // if favourite item does not exist
             if viewModel.favourites.isEmpty {
-                VStack(spacing: 100) {
-                    Text("No Favourite")
-                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                        Text("View slide show of random cat facts")
+                
+                GeometryReader { geometry in
+                    ZStack {
+                        Image("homeBackground")
+                            .resizable()
+                            .scaledToFill()
+                            .opacity(0.9)
+                            .edgesIgnoringSafeArea(.all)
+                            
+                        VStack(spacing: 100) {
+                            Text("No Favourite")
+                            NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                                Text("View slide show of random cat facts")
+                            }
+                            .simultaneousGesture(TapGesture().onEnded{
+                                viewModel.setSlideShowMode(.random)
+                            })
+                        }
                     }
-                    .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.setSlideShowMode(.random)
-                    })
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                 }
+                
             }
             else {
                 VStack(spacing: 100) {
