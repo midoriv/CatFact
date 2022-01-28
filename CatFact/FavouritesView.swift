@@ -36,10 +36,20 @@ struct FavouritesView: View {
                         .scaledToFit()
                     Text("No favourite yet...")
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height * 0.3)
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
+    }
+    
+    func getContentWidth(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.width < geometry.size.height ?
+            geometry.size.width : geometry.size.width * 0.25
+    }
+    
+    func getContentHeight(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.width < geometry.size.height ?
+        geometry.size.height * 0.3 : geometry.size.height
     }
 }
 
