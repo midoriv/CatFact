@@ -14,28 +14,7 @@ struct SlideShowView: View {
         Group {
             // if favourite item does not exist
             if viewModel.favourites.isEmpty {
-                
-                GeometryReader { geometry in
-                    ZStack {
-                        Image("homeBackground")
-                            .resizable()
-                            .scaledToFill()
-                            .opacity(0.9)
-                            .edgesIgnoringSafeArea(.all)
-                            
-                        VStack(spacing: 100) {
-                            Text("No Favourite")
-                            NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                                Text("View slide show of random cat facts")
-                            }
-                            .simultaneousGesture(TapGesture().onEnded {
-                                viewModel.setSlideShowMode(.random)
-                            })
-                        }
-                    }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                }
-                
+                noFavouriteView
             }
             else {
                 VStack(spacing: 100) {
@@ -58,6 +37,46 @@ struct SlideShowView: View {
         .onAppear {
             viewModel.setCurrentFactIndex(0)
         }
+    }
+    
+    var noFavouriteView: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Image("homeBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .opacity(0.9)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                VStack(spacing: 30) {
+                    VStack {
+                        Image("cat2")
+                            .resizable()
+                            .scaledToFit()
+                        Text("No Favourite")
+                    }
+                    .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
+                    
+                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                        Text("View slide show of random cat facts")
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        viewModel.setSlideShowMode(.random)
+                    })
+                }
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+    }
+    
+    func getContentWidth(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.width < geometry.size.height ?
+            geometry.size.width : geometry.size.width * 0.3
+    }
+    
+    func getContentHeight(in geometry: GeometryProxy) -> CGFloat {
+        geometry.size.width < geometry.size.height ?
+        geometry.size.height * 0.3 : geometry.size.height * 0.5
     }
 }
 
