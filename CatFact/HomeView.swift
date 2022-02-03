@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     @State private var orientation = UIDeviceOrientation.unknown
+    @StateObject private var notificationManager = NotificationManager()
     
     var body: some View {
         
@@ -34,7 +35,17 @@ struct HomeView: View {
         .onRotate { newOrientation in
             orientation = newOrientation
         }
-        
+        .onAppear(perform: notificationManager.reloadAuthorizationStatus)
+        .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
+            switch authorizationStatus {
+            case .notDetermined:
+                notificationManager.requestAuthorization()
+            case .authorized:
+                notificationManager.reloadLocalNotifications()
+            default:
+                break
+            }
+        }
     }
     
     var portraitBody: some View {
