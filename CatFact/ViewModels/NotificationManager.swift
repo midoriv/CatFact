@@ -13,8 +13,12 @@ final class NotificationManager: ObservableObject {
     @Published private(set) var authorizationStatus: UNAuthorizationStatus?
     
     init() {
-        createLocalNotification() { error in
-            if error == nil {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            if notifications.isEmpty {
+                self.createLocalNotification() { error in
+                    if error == nil {
+                    }
+                }
             }
         }
     }
