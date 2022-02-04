@@ -13,7 +13,6 @@ struct HomeView: View {
     @StateObject private var notificationManager = NotificationManager()
     
     var body: some View {
-        
         GeometryReader { geometry in
             ZStack {
                 Image("homeBackground")
@@ -40,8 +39,6 @@ struct HomeView: View {
             switch authorizationStatus {
             case .notDetermined:
                 notificationManager.requestAuthorization()
-            case .authorized:
-                notificationManager.reloadLocalNotifications()
             default:
                 break
             }

@@ -9,7 +9,6 @@ import Foundation
 import UserNotifications
 
 final class NotificationManager: ObservableObject {
-    @Published private(set) var notifications: [UNNotificationRequest] = []
     @Published private(set) var authorizationStatus: UNAuthorizationStatus?
     
     init() {
@@ -39,14 +38,6 @@ final class NotificationManager: ObservableObject {
         }
     }
     
-    func reloadLocalNotifications() {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
-            DispatchQueue.main.async {
-                self.notifications = notifications
-            }
-        }
-    }
-    
     func createLocalNotification(completion: @escaping (Error?) -> Void) {
         var dateComponents = DateComponents()
         dateComponents.hour = 10
@@ -63,8 +54,4 @@ final class NotificationManager: ObservableObject {
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
     }
-    
-//    func deleteLocalNotifications(identifiers: [String]) {
-//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
-//    }
 }
