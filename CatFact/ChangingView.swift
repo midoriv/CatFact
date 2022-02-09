@@ -44,12 +44,12 @@ struct ChangingView: View {
     var changingView: some View {
         GeometryReader { geometry in
             ZStack {
-                viewModel.getBackgroundColor()
+                Resources.getBackgroundColor()
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     Group {
-                        Image(viewModel.getImageName())
+                        Image(Resources.getImageName())
                             .resizable()
                             .scaledToFit()
                     }
