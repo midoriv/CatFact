@@ -18,6 +18,7 @@ struct FavouritesView: View {
             List(viewModel.favourites) { catFact in
                 Text(catFact.fact)
             }
+            .navigationTitle("Favourites")
         }
     }
     
