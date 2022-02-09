@@ -12,10 +12,26 @@ import SwiftUI
 class CatFactViewModel: ObservableObject {
     @Published private(set) var loadState: LoadState = .idle
     @Published private(set) var catFacts = [CatFact]()
-    @Published private(set) var favourites = [CatFact]()
+    @Published private(set) var favourites = [CatFact]() {
+        didSet {
+            storeInUserDefaults()
+        }
+    }
     @Published var currentFactIndex = 0
     
-    private var cancellables = Set<AnyCancellable>()
+    private var userDefaultsKey = "Favourites"
+    
+    private func storeInUserDefaults() {
+        UserDefaults.standard.set(try? JSONEncoder().encode(favourites), forKey: userDefaultsKey)
+    }
+    
+    private func restoreFromUserDefaults() {
+        if let jsonData = UserDefaults.standard.data(forKey: userDefaultsKey),
+           let decodedFavourites = try? JSONDecoder().decode(Array<CatFact>.self, from: jsonData) {
+            favourites = decodedFavourites
+        }
+    }
+    
     private let apiClient = CatFactAPIClient()
     
     private var timer: Timer?
@@ -36,6 +52,10 @@ class CatFactViewModel: ObservableObject {
         "lemonChiffon": Color.customColor(red: 255.0, green: 250.0, blue: 205.0),
         "lavender": Color.customColor(red: 230.0, green: 230.0, blue: 250.0),
     ]
+    
+    init() {
+        restoreFromUserDefaults()
+    }
     
     
     // MARK: - Intent(s)
