@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
-    @State private var orientation = UIDeviceOrientation.unknown
     @StateObject private var notificationManager = NotificationManager()
     
     var body: some View {
@@ -21,7 +20,7 @@ struct HomeView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                if orientation.isLandscape {
+                if viewModel.orientation.isLandscape {
                     landscapeBody
                 }
                 else {
@@ -32,7 +31,7 @@ struct HomeView: View {
         }
         .navigationBarHidden(true)
         .onRotate { newOrientation in
-            orientation = newOrientation
+            viewModel.orientation = newOrientation
         }
         .onAppear(perform: notificationManager.reloadAuthorizationStatus)
         .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
@@ -157,37 +156,12 @@ struct OptionView: View {
     }
 }
 
-// https://www.hackingwithswift.com/quick-start/swiftui/how-to-detect-device-rotation
-
-struct DeviceRotationViewModifier: ViewModifier {
-    let action: (UIDeviceOrientation) -> Void
-
-    func body(content: Content) -> some View {
-        content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                action(UIDevice.current.orientation)
-            }
-    }
-}
-
-// A View wrapper to make the modifier easier to use
-extension View {
-    func onRotate(perform action: @escaping (UIDeviceOrientation) -> Void) -> some View {
-        self.modifier(DeviceRotationViewModifier(action: action))
-    }
-}
-
-
-
-
-
 
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.portraitUpsideDown)
             .environmentObject( CatFactViewModel())
     }
 }
