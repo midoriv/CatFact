@@ -8,21 +8,49 @@
 import SwiftUI
 
 struct LoadingView: View {
+    @EnvironmentObject private var viewModel: CatFactViewModel
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center) {
                 Image("cat1")
                     .resizable()
-                    .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.2)
+                    .scaledToFit()
+                    .frame(width: getWidth(in: geometry), height: getHeight(in: geometry))
                 ProgressView("Loading...")
             }
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .onRotate { newOrientation in
+            viewModel.orientation = newOrientation
         }
     }
+    
+    func getWidth(in geometry: GeometryProxy) -> CGFloat {
+        if viewModel.orientation.isLandscape {
+            return geometry.size.width * 0.7
+        }
+        else {
+            return geometry.size.width * 0.6
+            
+        }
+    }
+    
+    func getHeight(in geometry: GeometryProxy) -> CGFloat {
+        if viewModel.orientation.isLandscape {
+            return geometry.size.height * 0.4
+        }
+        else {
+            return geometry.size.height * 0.2
+        }
+    }
+    
 }
+
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
         LoadingView()
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }
