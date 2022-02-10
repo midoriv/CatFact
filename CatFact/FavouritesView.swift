@@ -15,8 +15,13 @@ struct FavouritesView: View {
             noFavouriteView
         }
         else {
-            List(viewModel.favourites) { catFact in
-                Text(catFact.fact)
+            List {
+                ForEach(viewModel.favourites) { catFact in
+                    Text(catFact.fact)
+                }
+                .onDelete { indexSet in
+                    viewModel.favourites.remove(atOffsets: indexSet)
+                }
             }
             .navigationTitle("Favourites")
         }

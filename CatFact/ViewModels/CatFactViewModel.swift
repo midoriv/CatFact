@@ -12,7 +12,7 @@ import SwiftUI
 class CatFactViewModel: ObservableObject {
     @Published private(set) var loadState: LoadState = .idle
     @Published private(set) var catFacts = [CatFact]()
-    @Published private(set) var favourites = [CatFact]() {
+    @Published var favourites = [CatFact]() {
         didSet {
             storeInUserDefaults()
         }
