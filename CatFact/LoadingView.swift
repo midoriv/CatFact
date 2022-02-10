@@ -32,7 +32,6 @@ struct LoadingView: View {
         }
         else {
             return geometry.size.width * 0.6
-            
         }
     }
     
@@ -44,13 +43,11 @@ struct LoadingView: View {
             return geometry.size.height * 0.2
         }
     }
-    
 }
 
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
-.previewInterfaceOrientation(.landscapeLeft)
+        LoadingView().previewInterfaceOrientation(.landscapeLeft)
     }
 }

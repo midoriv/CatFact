@@ -38,8 +38,6 @@ class CatFactViewModel: ObservableObject {
     
     private var timer: Timer?
     
-    
-    
     init() {
         restoreFromUserDefaults()
     }
@@ -57,8 +55,6 @@ class CatFactViewModel: ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 self?.loadState = .loaded
                 self?.catFacts += catFacts
-                print("Loaded")
-                print("\(self!.catFacts.count)")
             }
         }
         catch {
