@@ -69,7 +69,7 @@ struct CatFactListView: View {
                             }
                         }
                     }
-                    .padding(.top, 50)
+                    .padding([.top, .bottom], viewModel.orientation.isLandscape ? 50 : 0)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
