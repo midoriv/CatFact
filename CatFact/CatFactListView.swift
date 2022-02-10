@@ -69,6 +69,7 @@ struct CatFactListView: View {
                             }
                         }
                     }
+                    .padding(.top, 50)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
