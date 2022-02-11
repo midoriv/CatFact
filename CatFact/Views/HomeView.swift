@@ -20,7 +20,7 @@ struct HomeView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                if isLandscape(in: geometry) {
+                if isLandscape(geometry) {
                     landscapeBody
                 }
                 else {
@@ -41,7 +41,7 @@ struct HomeView: View {
         }
     }
     
-    func isLandscape(in geometry: GeometryProxy) -> Bool {
+    func isLandscape(_ geometry: GeometryProxy) -> Bool {
         geometry.size.width > geometry.size.height
     }
     
