@@ -69,12 +69,16 @@ struct CatFactListView: View {
                             }
                         }
                     }
-                    .padding([.top, .bottom], viewModel.orientation.isLandscape ? 50 : 0)
+                    .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 0)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarTitle(Text("Discover"), displayMode: .inline)
+    }
+    
+    func isLandscape(in geometry: GeometryProxy) -> Bool {
+        geometry.size.width > geometry.size.height
     }
     
     func RowView(catFact: CatFact, geometry: GeometryProxy) -> some View {

@@ -20,7 +20,7 @@ struct HomeView: View {
                     .opacity(0.9)
                     .edgesIgnoringSafeArea(.all)
                 
-                if viewModel.orientation.isLandscape {
+                if isLandscape(in: geometry) {
                     landscapeBody
                 }
                 else {
@@ -30,9 +30,6 @@ struct HomeView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .navigationBarHidden(true)
-        .onRotate { newOrientation in
-            viewModel.orientation = newOrientation
-        }
         .onAppear(perform: notificationManager.reloadAuthorizationStatus)
         .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
             switch authorizationStatus {
@@ -42,6 +39,10 @@ struct HomeView: View {
                 break
             }
         }
+    }
+    
+    func isLandscape(in geometry: GeometryProxy) -> Bool {
+        geometry.size.width > geometry.size.height
     }
     
     var portraitBody: some View {

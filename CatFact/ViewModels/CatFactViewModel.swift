@@ -18,9 +18,7 @@ class CatFactViewModel: ObservableObject {
         }
     }
     @Published var currentFactIndex = 0
-    
-    var orientation = UIDeviceOrientation.unknown
-    
+        
     private var userDefaultsKey = "Favourites"
     
     private func storeInUserDefaults() {

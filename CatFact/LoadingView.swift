@@ -21,13 +21,14 @@ struct LoadingView: View {
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
-        .onRotate { newOrientation in
-            viewModel.orientation = newOrientation
-        }
+    }
+    
+    func isLandscape(in geometry: GeometryProxy) -> Bool {
+        geometry.size.width > geometry.size.height
     }
     
     func getWidth(in geometry: GeometryProxy) -> CGFloat {
-        if viewModel.orientation.isLandscape {
+        if isLandscape(in: geometry) {
             return geometry.size.width * 0.7
         }
         else {
@@ -36,7 +37,7 @@ struct LoadingView: View {
     }
     
     func getHeight(in geometry: GeometryProxy) -> CGFloat {
-        if viewModel.orientation.isLandscape {
+        if isLandscape(in: geometry) {
             return geometry.size.height * 0.4
         }
         else {
@@ -44,7 +45,6 @@ struct LoadingView: View {
         }
     }
 }
-
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
