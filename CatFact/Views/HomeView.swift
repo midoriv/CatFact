@@ -59,33 +59,29 @@ struct HomeView: View {
                         .offset(y: -30)
                         .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
                 }
-                .frame(width: getContentWidthForPortrait(in: geometry), height: getContentHeightForPortrait(in: geometry))
+                .frame(width: geometry.size.width, height: geometry.size.height * 0.4)
                 
-                VStack(spacing: 40) {
-                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Dicover")
-                    }
-                    .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.clearCatFacts()
-                    })
-                    
-                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Favourites")
-                    }
-                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Slide Show")
-                    }
-                }
+                optionsView
             }
         }
     }
     
-    func getContentWidthForPortrait(in geometry: GeometryProxy) -> CGFloat {
-        geometry.size.width
-    }
-    
-    func getContentHeightForPortrait(in geometry: GeometryProxy) -> CGFloat {
-        geometry.size.height * 0.4
+    var optionsView: some View {
+        VStack(spacing: 40) {
+            NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
+                OptionView(optionName: "Dicover")
+            }
+            .simultaneousGesture(TapGesture().onEnded{
+                viewModel.clearCatFacts()
+            })
+            
+            NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
+                OptionView(optionName: "Favourites")
+            }
+            NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
+                OptionView(optionName: "Slide Show")
+            }
+        }
     }
     
     var landscapeBody: some View {
@@ -100,34 +96,12 @@ struct HomeView: View {
                         .font(.system(size: 70, weight: .bold, design: .serif))
                         .foregroundColor(Color.customColor(red: 245.0, green: 151.0, blue: 142))
                 }
-                .frame(width: getContentWidthForLandscape(in: geometry), height: getContentHeightForLandscape(in: geometry))
+                .frame(width: geometry.size.width * 0.4, height: geometry.size.height)
                 
-                VStack(spacing: 40) {
-                    NavigationLink(destination: CatFactListView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Dicover")
-                    }
-                    .simultaneousGesture(TapGesture().onEnded{
-                        viewModel.clearCatFacts()
-                    })
-                    
-                    NavigationLink(destination: FavouritesView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Favourites")
-                    }
-                    NavigationLink(destination: SlideShowView().environmentObject(viewModel)) {
-                        OptionView(optionName: "Slide Show")
-                    }
-                }
+                optionsView
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
-    }
-    
-    func getContentWidthForLandscape(in geometry: GeometryProxy) -> CGFloat {
-        geometry.size.width * 0.4
-    }
-    
-    func getContentHeightForLandscape(in geometry: GeometryProxy) -> CGFloat {
-        geometry.size.height
     }
 }
 
