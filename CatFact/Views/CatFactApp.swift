@@ -17,6 +17,8 @@ struct CatFactApp: App {
                 HomeView()
                     .environmentObject(viewModel)
             }
+            .accentColor(.primary)
+            .tint(.pink)
         }
     }
 }
