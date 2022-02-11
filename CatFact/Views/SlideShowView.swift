@@ -11,31 +11,39 @@ struct SlideShowView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
-        Group {
-            // if favourite item does not exist
-            if viewModel.favourites.isEmpty {
-                noFavouriteView
-            }
-            else {
-                VStack(spacing: 100) {
-                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                        Text("View slide show of your favourite cat facts")
+        ZStack {
+            Image("homeBackground")
+                .resizable()
+                .scaledToFill()
+                .opacity(0.9)
+                .edgesIgnoringSafeArea(.all)
+        
+            Group {
+                // if favourite item does not exist
+                if viewModel.favourites.isEmpty {
+                    noFavouriteView
+                }
+                else {
+                    VStack(spacing: 100) {
+                        NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                            Text("View slide show of your favourite cat facts")
+                        }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            viewModel.setSlideShowMode(.favourite)
+                        })
+                        
+                        NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
+                            Text("View slide show of random cat facts")
+                        }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            viewModel.setSlideShowMode(.random)
+                        })
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        viewModel.setSlideShowMode(.favourite)
-                    })
-                    
-                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                        Text("View slide show of random cat facts")
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        viewModel.setSlideShowMode(.random)
-                    })
                 }
             }
-        }
-        .onAppear {
-            viewModel.setCurrentFactIndex(0)
+            .onAppear {
+                viewModel.setCurrentFactIndex(0)
+            }
         }
     }
     
@@ -58,7 +66,7 @@ struct SlideShowView: View {
                     .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
                     
                     NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                        Text("View slide show of random cat facts")
+                        Text("Want to view random cat facts?")
                     }
                     .simultaneousGesture(TapGesture().onEnded {
                         viewModel.setSlideShowMode(.random)
