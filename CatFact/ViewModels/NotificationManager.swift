@@ -45,13 +45,25 @@ final class NotificationManager: ObservableObject {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Today's Cat Fact"
-        notificationContent.sound = .default
-        notificationContent.body = "A cat fact here..."
+        Task {
+            let notificationContent = UNMutableNotificationContent()
+            notificationContent.title = "Today's Cat Fact"
+            notificationContent.sound = .default
+            notificationContent.body = await getCatFact()
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
+        }
+    }
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
+    func getCatFact() async -> String {
+        let apiClient = CatFactAPIClient()
         
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
+        if let catFact = try? await apiClient.loadCatFact() {
+            return catFact.fact
+        }
+        else {
+            return ""
+        }
     }
 }
