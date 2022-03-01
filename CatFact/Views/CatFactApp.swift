@@ -17,6 +17,7 @@ struct CatFactApp: App {
                 HomeView()
                     .environmentObject(viewModel)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .accentColor(.primary)
             .tint(.pink)
         }
