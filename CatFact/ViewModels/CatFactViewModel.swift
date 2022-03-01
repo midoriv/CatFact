@@ -18,7 +18,16 @@ class CatFactViewModel: ObservableObject {
         }
     }
     @Published var currentFactIndex = 0
-        
+    
+    private let apiClient = CatFactAPIClient()
+    
+    
+    init() {
+        restoreFromUserDefaults()
+    }
+    
+    
+    // MARK: - UserDefaults
     private var userDefaultsKey = "Favourites"
     
     private func storeInUserDefaults() {
@@ -30,14 +39,6 @@ class CatFactViewModel: ObservableObject {
            let decodedFavourites = try? JSONDecoder().decode(Array<CatFact>.self, from: jsonData) {
             favourites = decodedFavourites
         }
-    }
-    
-    private let apiClient = CatFactAPIClient()
-    
-    private var timer: Timer?
-    
-    init() {
-        restoreFromUserDefaults()
     }
     
     
@@ -62,6 +63,9 @@ class CatFactViewModel: ObservableObject {
             }
         }
     }
+    
+    // a timer used for changing current fact index every 5 seconds
+    private var timer: Timer?
     
     func startTimer() {
         timer?.invalidate()

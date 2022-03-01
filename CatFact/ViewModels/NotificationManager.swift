@@ -13,6 +13,7 @@ final class NotificationManager: ObservableObject {
     
     init() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            // if a notification hasn't been created yet
             if notifications.isEmpty {
                 self.createLocalNotification() { error in
                     if error == nil {
@@ -38,6 +39,7 @@ final class NotificationManager: ObservableObject {
         }
     }
     
+    // create a local notification of a cat fact at 10 AM daily
     func createLocalNotification(completion: @escaping (Error?) -> Void) {
         var dateComponents = DateComponents()
         dateComponents.hour = 10
@@ -50,8 +52,8 @@ final class NotificationManager: ObservableObject {
             notificationContent.title = "Today's Cat Fact"
             notificationContent.sound = .default
             notificationContent.body = await getCatFact()
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
             
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
         }
     }
