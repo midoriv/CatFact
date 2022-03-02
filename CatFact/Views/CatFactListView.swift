@@ -62,14 +62,25 @@ struct CatFactListView: View {
                                 }) {
                                     Text("Load more")
                                 }
-                                .padding(40)
                                 
                             case .failed:
-                                Text("Failed")
+                                VStack(spacing: 10) {
+                                    Label("Loading failed", systemImage: "exclamationmark.triangle")
+                                        .foregroundColor(.red)
+                                    
+                                    Button(action: {
+                                        Task {
+                                            await viewModel.loadCatFacts()
+                                        }
+                                    }) {
+                                        Text("Try again").foregroundColor(.black)
+                                    }
+                                }
                             }
                         }
+                        .padding(40)
                     }
-                    .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 0)
+                    .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 10)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
