@@ -12,7 +12,7 @@ struct FavouritesView: View {
     
     var body: some View {
         if viewModel.favourites.isEmpty {
-            SingleMessageView()
+            SingleMessageView(message: "No favourite yet...")
         }
         else {
             List {

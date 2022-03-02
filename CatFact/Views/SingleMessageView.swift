@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SingleMessageView: View {
+    var message: String
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -21,7 +23,7 @@ struct SingleMessageView: View {
                     Image("cat10")
                         .resizable()
                         .scaledToFit()
-                    Text("No favourite yet...")
+                    Text(message)
                 }
                 .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
             }
@@ -42,6 +44,6 @@ struct SingleMessageView: View {
 
 struct SingleMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        SingleMessageView()
+        SingleMessageView(message: "No favourite yet...")
     }
 }
