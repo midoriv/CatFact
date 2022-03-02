@@ -33,59 +33,52 @@ struct CatFactListView: View {
     
     var catFactList: some View {
         GeometryReader { geometry in
-            ZStack {
-                Image("homeBackground")
-                    .resizable()
-                    .scaledToFill()
-                    .opacity(0.9)
-                    .edgesIgnoringSafeArea(.all)
-                
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 20) {
-                        ForEach(viewModel.catFacts) { catFact in
-                            RowView(catFact: catFact, geometry: geometry)
-                            Image("cat2")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                        }
-                        
-                        Group {
-                            switch viewModel.loadState {
-                            case .loading:
-                                ProgressView("Loading...")
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
+                    ForEach(viewModel.catFacts) { catFact in
+                        RowView(catFact: catFact, geometry: geometry)
+                        Image("cat2")
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                    }
+                    
+                    Group {
+                        switch viewModel.loadState {
+                        case .loading:
+                            ProgressView("Loading...")
+                            
+                        case .idle, .loaded:
+                            Button(action: {
+                                Task {
+                                    await viewModel.loadCatFacts()
+                                }
+                            }) {
+                                Text("Load more")
+                            }
+                            
+                        case .failed:
+                            VStack(spacing: 10) {
+                                Label("Loading failed", systemImage: "exclamationmark.triangle")
+                                    .foregroundColor(.red)
                                 
-                            case .idle, .loaded:
                                 Button(action: {
                                     Task {
                                         await viewModel.loadCatFacts()
                                     }
                                 }) {
-                                    Text("Load more")
-                                }
-                                
-                            case .failed:
-                                VStack(spacing: 10) {
-                                    Label("Loading failed", systemImage: "exclamationmark.triangle")
-                                        .foregroundColor(.red)
-                                    
-                                    Button(action: {
-                                        Task {
-                                            await viewModel.loadCatFacts()
-                                        }
-                                    }) {
-                                        Text("Try again").foregroundColor(.black)
-                                    }
+                                    Text("Try again").foregroundColor(.black)
                                 }
                             }
                         }
-                        .padding(40)
                     }
-                    .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 10)
+                    .padding(40)
                 }
+                .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 10)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
+            
         }
-        .navigationBarTitle(Text("Discover"), displayMode: .inline)
+        .layBackground()
     }
     
     func isLandscape(in geometry: GeometryProxy) -> Bool {
@@ -93,9 +86,8 @@ struct CatFactListView: View {
     }
     
     func RowView(catFact: CatFact, geometry: GeometryProxy) -> some View {
-        HStack {
+        HStack(alignment: .center) {
             Text(catFact.fact)
-                .padding(.trailing, 20)
             Spacer()
             Button(action: {
                 viewModel.addFavourite(catFact)
@@ -108,8 +100,29 @@ struct CatFactListView: View {
                 }
             }
         }
-        .frame(width: geometry.size.width * 0.8)
-        .padding()
+        .frame(width: geometry.size.width * 0.4)
+    }
+}
+
+// a view modifier to apply for the contents (scroll view / list) to lay a background image
+struct LayBackground: ViewModifier {
+    func body(content: Content) -> some View {
+        ZStack {
+            Image("homeBackground")
+                .resizable()
+                .scaledToFill()
+                .opacity(0.9)
+                .edgesIgnoringSafeArea(.all)
+            
+            content
+        }
+        .navigationBarTitle(Text("Discover"), displayMode: .inline)
+    }
+}
+
+extension View {
+    func layBackground() -> some View {
+        self.modifier(LayBackground())
     }
 }
 
