@@ -100,23 +100,26 @@ struct CatFactListView: View {
                 }
             }
         }
-        .frame(width: geometry.size.width * 0.4)
+        .padding()
     }
 }
 
 // a view modifier to apply for the contents (scroll view / list) to lay a background image
 struct LayBackground: ViewModifier {
     func body(content: Content) -> some View {
-        ZStack {
-            Image("homeBackground")
-                .resizable()
-                .scaledToFill()
-                .opacity(0.9)
-                .edgesIgnoringSafeArea(.all)
-            
-            content
+        GeometryReader { geometry in
+            ZStack {
+                Image("homeBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .opacity(0.9)
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                
+                content
+            }
+            .navigationBarTitle(Text("Discover"), displayMode: .inline)
         }
-        .navigationBarTitle(Text("Discover"), displayMode: .inline)
     }
 }
 
