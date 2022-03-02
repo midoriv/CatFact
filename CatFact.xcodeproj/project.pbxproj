@@ -12,6 +12,7 @@
 		070E821527CEF23700710768 /* SingleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070E821427CEF23700710768 /* SingleMessageView.swift */; };
 		073AAA3D279A4F95007CDF5B /* CatFactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073AAA3C279A4F95007CDF5B /* CatFactListView.swift */; };
 		074758A027B3AD1B0007F7A6 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0747589F27B3AD1B0007F7A6 /* Resources.swift */; };
+		075A819127D039DE00205218 /* LayBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075A819027D039DE00205218 /* LayBackground.swift */; };
 		075E37FE2794F51D00D58969 /* CatFactApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E37FD2794F51D00D58969 /* CatFactApp.swift */; };
 		075E38002794F51D00D58969 /* SlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075E37FF2794F51D00D58969 /* SlideShowView.swift */; };
 		075E38022794F51F00D58969 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075E38012794F51F00D58969 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		070E821427CEF23700710768 /* SingleMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMessageView.swift; sourceTree = "<group>"; };
 		073AAA3C279A4F95007CDF5B /* CatFactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactListView.swift; sourceTree = "<group>"; };
 		0747589F27B3AD1B0007F7A6 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		075A819027D039DE00205218 /* LayBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayBackground.swift; sourceTree = "<group>"; };
 		075E37FA2794F51D00D58969 /* CatFact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatFact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		075E37FD2794F51D00D58969 /* CatFactApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactApp.swift; sourceTree = "<group>"; };
 		075E37FF2794F51D00D58969 /* SlideShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				07007BCB279FB50000767879 /* LoadingView.swift */,
 				075E37FD2794F51D00D58969 /* CatFactApp.swift */,
 				070E821427CEF23700710768 /* SingleMessageView.swift */,
+				075A819027D039DE00205218 /* LayBackground.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				075E381927950CBD00D58969 /* LoadState.swift in Sources */,
 				0767063C2797C89400C1AC24 /* ChangingView.swift in Sources */,
 				075E38002794F51D00D58969 /* SlideShowView.swift in Sources */,
+				075A819127D039DE00205218 /* LayBackground.swift in Sources */,
 				075E37FE2794F51D00D58969 /* CatFactApp.swift in Sources */,
 				07007BCC279FB50000767879 /* LoadingView.swift in Sources */,
 				07A5E19927AB8388007FA1AA /* NotificationManager.swift in Sources */,
