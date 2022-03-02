@@ -19,7 +19,7 @@ struct CatFactListView: View {
                 case .loaded:
                     catFactList
                 case .failed:
-                    Text("Failed")
+                    SingleMessageView(message: "Loading failed.")
                 }
             }
             .task {
