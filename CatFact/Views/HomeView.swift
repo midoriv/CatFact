@@ -13,13 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                Image("homeBackground")
-                    .resizable()
-                    .scaledToFill()
-                    .opacity(0.9)
-                    .edgesIgnoringSafeArea(.all)
-                
+            Group {
                 if isLandscape(geometry) {
                     landscapeBody
                 }
@@ -29,6 +23,7 @@ struct HomeView: View {
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
+        .layBackground()
         .navigationBarHidden(true)
         .onAppear(perform: notificationManager.reloadAuthorizationStatus)
         .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in
@@ -130,8 +125,6 @@ struct OptionView: View {
         .frame(width: 250, height: 60)
     }
 }
-
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
