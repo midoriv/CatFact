@@ -21,7 +21,7 @@ struct SlideShowView: View {
             Group {
                 // if favourite item does not exist
                 if viewModel.favourites.isEmpty {
-                    noFavouriteView
+                    SingleMessageView(message: "No favourite yet...")
                 }
                 else {
                     VStack(spacing: 100) {
@@ -44,36 +44,6 @@ struct SlideShowView: View {
             .onAppear {
                 viewModel.setCurrentFactIndex(0)
             }
-        }
-    }
-    
-    var noFavouriteView: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Image("homeBackground")
-                    .resizable()
-                    .scaledToFill()
-                    .opacity(0.9)
-                    .edgesIgnoringSafeArea(.all)
-                    
-                VStack(spacing: 30) {
-                    VStack {
-                        Image("cat2")
-                            .resizable()
-                            .scaledToFit()
-                        Text("No Favourite")
-                    }
-                    .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
-                    
-                    NavigationLink(destination: ChangingView().environmentObject(viewModel)) {
-                        Text("Want to view random cat facts?")
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        viewModel.setSlideShowMode(.random)
-                    })
-                }
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
     
