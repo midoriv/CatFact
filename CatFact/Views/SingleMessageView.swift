@@ -12,23 +12,16 @@ struct SingleMessageView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                Image("homeBackground")
+            VStack(alignment: .center) {
+                Image("cat10")
                     .resizable()
-                    .scaledToFill()
-                    .opacity(0.9)
-                    .edgesIgnoringSafeArea(.all)
-            
-                VStack(alignment: .center) {
-                    Image("cat10")
-                        .resizable()
-                        .scaledToFit()
-                    Text(message)
-                }
-                .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
+                    .scaledToFit()
+                    .frame(width: getContentWidth(in: geometry), height: getContentHeight(in: geometry))
+                Text(message)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
+        .layBackground()
     }
     
     func getContentWidth(in geometry: GeometryProxy) -> CGFloat {
@@ -38,12 +31,13 @@ struct SingleMessageView: View {
     
     func getContentHeight(in geometry: GeometryProxy) -> CGFloat {
         geometry.size.width < geometry.size.height ?
-        geometry.size.height * 0.3 : geometry.size.height
+        geometry.size.height * 0.3 : geometry.size.height * 0.6
     }
 }
 
 struct SingleMessageView_Previews: PreviewProvider {
     static var previews: some View {
         SingleMessageView(message: "No favourite yet...")
+.previewInterfaceOrientation(.landscapeRight)
     }
 }
