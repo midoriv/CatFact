@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// a view modifier to apply for the contents (scroll view / list) to lay a background image
+// a view modifier applied to contents to lay the same background image
 struct LayBackground: ViewModifier {
     func body(content: Content) -> some View {
         GeometryReader { geometry in

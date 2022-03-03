@@ -36,10 +36,6 @@ struct HomeView: View {
         }
     }
     
-    func isLandscape(_ geometry: GeometryProxy) -> Bool {
-        geometry.size.width > geometry.size.height
-    }
-    
     var portraitBody: some View {
         GeometryReader { geometry in
             VStack(spacing: 30) {

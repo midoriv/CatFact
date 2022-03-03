@@ -14,3 +14,8 @@ extension Color {
     }
 }
 
+extension View {
+    func isLandscape(_ geometry: GeometryProxy) -> Bool {
+        geometry.size.width > geometry.size.height
+    }
+}

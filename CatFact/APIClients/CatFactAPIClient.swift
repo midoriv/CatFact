@@ -11,6 +11,7 @@ import Combine
 struct CatFactAPIClient {
     private let url = URL(string: "https://catfact.ninja/fact")!
     
+    // load 10 cat facts at once
     func loadCatFacts() async throws -> [CatFact] {
         return try await withThrowingTaskGroup(of: [CatFact].self) { group -> [CatFact] in
             for _ in 0...9 {
@@ -24,6 +25,7 @@ struct CatFactAPIClient {
         }
     }
     
+    // load one cat fact
     func loadCatFact() async throws -> CatFact {
         let (data, _) = try await URLSession.shared.data(from: url)
         let catFact = try JSONDecoder().decode(CatFact.self, from: data)

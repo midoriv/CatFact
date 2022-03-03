@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct Resources {
-    // https://sozai-good.com/illust/animal/cat?category_id=174
+    // source: https://sozai-good.com/illust/animal/cat?category_id=174
     private static let imageNames = ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10"]
 
-    // https://www.rapidtables.com/web/color/RGB_Color.html
+    // source: https://www.rapidtables.com/web/color/RGB_Color.html
     private static let backgroundColors = [
         "mistyRose": Color.customColor(red: 255.0, green: 228.0, blue: 225.0),
         "lightCoral": Color.customColor(red: 240.0, green: 128.0, blue: 128.0),

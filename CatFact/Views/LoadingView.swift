@@ -23,12 +23,8 @@ struct LoadingView: View {
         }
     }
     
-    func isLandscape(in geometry: GeometryProxy) -> Bool {
-        geometry.size.width > geometry.size.height
-    }
-    
     func getWidth(in geometry: GeometryProxy) -> CGFloat {
-        if isLandscape(in: geometry) {
+        if isLandscape(geometry) {
             return geometry.size.width * 0.7
         }
         else {
@@ -37,7 +33,7 @@ struct LoadingView: View {
     }
     
     func getHeight(in geometry: GeometryProxy) -> CGFloat {
-        if isLandscape(in: geometry) {
+        if isLandscape(geometry) {
             return geometry.size.height * 0.4
         }
         else {

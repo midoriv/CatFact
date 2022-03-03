@@ -18,9 +18,7 @@ class CatFactViewModel: ObservableObject {
         }
     }
     @Published var currentFactIndex = 0
-    
     private let apiClient = CatFactAPIClient()
-    
     
     init() {
         restoreFromUserDefaults()
@@ -28,6 +26,7 @@ class CatFactViewModel: ObservableObject {
     
     
     // MARK: - UserDefaults
+    
     private var userDefaultsKey = "Favourites"
     
     private func storeInUserDefaults() {
@@ -98,6 +97,7 @@ class CatFactViewModel: ObservableObject {
     }
     
     // MARK: - Slide show
+    
     var slideShowMode = SlideShowMode.random
     
     enum SlideShowMode: Equatable {

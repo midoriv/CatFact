@@ -73,16 +73,12 @@ struct CatFactListView: View {
                     }
                     .padding(40)
                 }
-                .padding([.top, .bottom], isLandscape(in: geometry) ? 50 : 10)
+                .padding([.top, .bottom], isLandscape(geometry) ? 50 : 10)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
             
         }
         .layBackground()
-    }
-    
-    func isLandscape(in geometry: GeometryProxy) -> Bool {
-        geometry.size.width > geometry.size.height
     }
     
     func RowView(catFact: CatFact, geometry: GeometryProxy) -> some View {

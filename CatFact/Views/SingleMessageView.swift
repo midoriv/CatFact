@@ -37,7 +37,6 @@ struct SingleMessageView: View {
 
 struct SingleMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        SingleMessageView(message: "No favourite yet...")
-.previewInterfaceOrientation(.landscapeRight)
+        SingleMessageView(message: "No favourite yet...").previewInterfaceOrientation(.landscapeRight)
     }
 }
