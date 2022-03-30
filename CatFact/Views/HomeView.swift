@@ -24,6 +24,7 @@ struct HomeView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .layBackground()
+        .navigationBarTitle(Text("Home"), displayMode: .inline)
         .navigationBarHidden(true)
         .onAppear(perform: notificationManager.reloadAuthorizationStatus)
         .onChange(of: notificationManager.authorizationStatus) { authorizationStatus in

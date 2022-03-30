@@ -21,7 +21,6 @@ struct LayBackground: ViewModifier {
                 
                 content
             }
-            .navigationBarTitle(Text("Discover"), displayMode: .inline)
         }
     }
 }

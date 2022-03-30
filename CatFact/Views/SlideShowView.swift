@@ -35,6 +35,7 @@ struct SlideShowView: View {
             }
         }
         .layBackground()
+        .navigationTitle("Slide Show")
         .onAppear {
             viewModel.setCurrentFactIndex(0)
         }

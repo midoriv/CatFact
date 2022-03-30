@@ -11,24 +11,27 @@ struct CatFactListView: View {
     @EnvironmentObject private var viewModel: CatFactViewModel
     
     var body: some View {
-        if viewModel.catFacts.isEmpty {
-            Group {
-                switch viewModel.loadState {
-                case .idle, .loading:
-                    LoadingView()
-                case .loaded:
-                    catFactList
-                case .failed:
-                    SingleMessageView(message: "Loading failed.")
+        Group {
+            if viewModel.catFacts.isEmpty {
+                Group {
+                    switch viewModel.loadState {
+                    case .idle, .loading:
+                        LoadingView()
+                    case .loaded:
+                        catFactList
+                    case .failed:
+                        SingleMessageView(message: "Loading failed.")
+                    }
+                }
+                .task {
+                    await viewModel.loadCatFacts()
                 }
             }
-            .task {
-                await viewModel.loadCatFacts()
+            else {
+                catFactList
             }
         }
-        else {
-            catFactList
-        }
+        .navigationTitle("Discover")
     }
     
     var catFactList: some View {
