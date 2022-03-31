@@ -42,7 +42,7 @@ final class NotificationManager: ObservableObject {
     // create a local notification of a cat fact at 10 AM daily
     func createLocalNotification(completion: @escaping (Error?) -> Void) {
         var dateComponents = DateComponents()
-        dateComponents.hour = 10
+        dateComponents.hour = 11
         dateComponents.minute = 0
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
