@@ -56,3 +56,23 @@ Clone this repository, simply open it on Xcode and run using iOS Simulator or yo
 
 ## Technology
 The user interface is built based on SwiftUI as it is a new platform designed to provide a better and easier development experience.
+
+
+## Image Credits
+The illustration images used for the **CatFact** app are attributed to [Sozai Good](https://sozai-good.com/) and [illust image](https://illustimage.com/).
+
+You can visit the images via following links:
+- [Cat 1](https://sozai-good.com/illust/animal/cat/real-c/83245)
+- [Cat 2](https://sozai-good.com/illust/animal/cat/real-c/83251)
+- [Cat 3](https://sozai-good.com/illust/animal/cat/real-c/83257)
+- [Cat 4](https://sozai-good.com/illust/animal/cat/real-c/83281)
+- [Cat 5](https://sozai-good.com/illust/animal/cat/real-c/83314)
+- [Cat 6](https://sozai-good.com/illust/animal/cat/real-c/83285)
+- [Cat 7](https://sozai-good.com/illust/animal/cat/real-c/83258)
+- [Cat 8](https://sozai-good.com/illust/animal/cat/real-c/83305)
+- [Cat 9](https://sozai-good.com/illust/animal/cat/real-c/83288)
+- [Cat 10](https://sozai-good.com/illust/animal/cat/real-c/83308)
+- [Cat 11](https://sozai-good.com/illust/animal/cat/real-c/83297)
+- [Home Option](https://illustimage.com/?id=301)
+- [Background Image](https://sozai-good.com/illust/free-background/japanese/36223)
+
